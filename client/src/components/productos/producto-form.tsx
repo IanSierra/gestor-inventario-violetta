@@ -65,7 +65,13 @@ export function ProductoForm({
   // Mutación para crear producto
   const createMutation = useMutation({
     mutationFn: async (data: ProductoFormValues) => {
-      const res = await apiRequest("POST", "/api/productos", data);
+      // Convertir valores numéricos a strings para la API
+      const formattedData = {
+        ...data,
+        precio: data.precio.toString(),
+        stock: data.stock.toString()
+      };
+      const res = await apiRequest("POST", "/api/productos", formattedData);
       return res.json();
     },
     onSuccess: () => {
@@ -91,7 +97,13 @@ export function ProductoForm({
   const updateMutation = useMutation({
     mutationFn: async (data: ProductoFormValues) => {
       if (!producto) throw new Error("No se puede editar: producto no especificado");
-      const res = await apiRequest("PUT", `/api/productos/${producto.id}`, data);
+      // Convertir valores numéricos a strings para la API
+      const formattedData = {
+        ...data,
+        precio: data.precio.toString(),
+        stock: data.stock.toString()
+      };
+      const res = await apiRequest("PUT", `/api/productos/${producto.id}`, formattedData);
       return res.json();
     },
     onSuccess: () => {
