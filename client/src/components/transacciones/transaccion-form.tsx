@@ -183,10 +183,12 @@ export function TransaccionForm({
 
   // Manejar envío del formulario
   const onSubmit = (data: TransaccionFormValues) => {
-    // Convertir id_producto a número
+    // Convertir id_producto a número y montos a strings
     const formData = {
       ...data,
       id_producto: parseInt(data.id_producto),
+      total: data.total.toString(),
+      abono: data.abono ? data.abono.toString() : null
     };
     
     createMutation.mutate(formData);

@@ -115,10 +115,17 @@ export function ProductoForm({
 
   // Manejar envío del formulario
   const onSubmit = (data: ProductoFormValues) => {
+    // Convertir valores numéricos a strings para la API
+    const dataForSubmit = {
+      ...data,
+      precio: data.precio.toString(),
+      stock: data.stock.toString()
+    };
+    
     if (isEditing) {
-      updateMutation.mutate(data);
+      updateMutation.mutate(dataForSubmit);
     } else {
-      createMutation.mutate(data);
+      createMutation.mutate(dataForSubmit);
     }
   };
 
