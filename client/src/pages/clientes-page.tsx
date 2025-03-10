@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import * as React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Layout } from "@/components/layout/layout";
 import { Button } from "@/components/ui/button";
@@ -69,11 +69,11 @@ type ClienteFormValues = z.infer<typeof clienteSchema>;
 export default function ClientesPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const [filtroBusqueda, setFiltroBusqueda] = useState<string>("");
-  const [clienteSeleccionado, setClienteSeleccionado] = useState<Cliente | null>(null);
-  const [showFormDialog, setShowFormDialog] = useState(false);
-  const [formMode, setFormMode] = useState<"create" | "edit">("create");
-  const [showDetallesDialog, setShowDetallesDialog] = useState(false);
+  const [filtroBusqueda, setFiltroBusqueda] = React.useState<string>("");
+  const [clienteSeleccionado, setClienteSeleccionado] = React.useState<Cliente | null>(null);
+  const [showFormDialog, setShowFormDialog] = React.useState(false);
+  const [formMode, setFormMode] = React.useState<"create" | "edit">("create");
+  const [showDetallesDialog, setShowDetallesDialog] = React.useState(false);
 
   // Configurar formulario
   const form = useForm<ClienteFormValues>({
@@ -225,7 +225,7 @@ export default function ClientesPage() {
   };
 
   // Efecto para cargar datos de cliente en el formulario
-  useEffect(() => {
+  React.useEffect(() => {
     resetForm();
   }, [clienteSeleccionado, formMode]);
 
