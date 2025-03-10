@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Layout } from "@/components/layout/layout";
 import { Button } from "@/components/ui/button";
@@ -225,7 +225,7 @@ export default function ClientesPage() {
   };
 
   // Efecto para cargar datos de cliente en el formulario
-  React.useEffect(() => {
+  useEffect(() => {
     resetForm();
   }, [clienteSeleccionado, formMode]);
 
